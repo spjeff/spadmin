@@ -282,7 +282,7 @@
         <WebApplication name="MySite Host">
             <Type>MySiteHost</Type>
             <ApplicationPool>portal</ApplicationPool>
-            <Url>http://mysites</Url>
+            <Url>http://mysite</Url>
             <Port>80</Port>
             <UseHostHeader>true</UseHostHeader>
             <AddURLToLocalIntranetZone>true</AddURLToLocalIntranetZone>
@@ -293,7 +293,7 @@
             <!-- You can now specify a different DB server/instance or alias per web application and service application. The behavior is slightly different than with the farm DB server though, see below. -->
             <Database>
                 <!-- Name: Name of the first content database for this web application. -->
-                <Name>Content_MySites</Name>
+                <Name>Content_MySite</Name>
                 <!-- If you are creating an alias (recommended!), <DBServer> is actually the value of the SQL alias; otherwise it's the NetBIOS name of the SQL server or instance. 
                      If you leave <DBServer> blank, the default DBServer value for the farm is used -->
                 <DBServer></DBServer>
@@ -307,7 +307,7 @@
                 <ManagedPath relativeUrl="personal" explicit="false"/>
             </ManagedPaths>
             <SiteCollections>
-                <SiteCollection siteUrl="http://mysites">
+                <SiteCollection siteUrl="http://mysite">
                     <Name>My Site Host</Name>
                     <Description></Description>
                     <HostNamedSiteCollection>false</HostNamedSiteCollection>
@@ -627,7 +627,7 @@
             <ProxyName>Access 2010 Service</ProxyName>
         </AccessService>
         <!-- AccessServices is the new 2013+ version, and is therefore only applicable to SharePoint 2013+ -->
-        <AccessServices Provision="false">
+        <AccessServices Provision="localhost">
             <Name>Access Services</Name>
             <ProxyName>Access Services</ProxyName>
             <!-- You can specify a different DB server/instance or alias per web application and service application. The behavior is slightly different than with the farm DB server though, see below. -->
@@ -645,7 +645,7 @@
             </Database>
         </AccessServices>
         <!-- If you choose to provision Performance Point Services, the user running the script must be in the sysadmin role of the SQL server whilst the script runs. This can be revoked afterwards. -->
-        <PerformancePointService Provision="false">
+        <PerformancePointService Provision="localhost">
             <Name>PerformancePoint Service</Name>
             <ProxyName>PerformancePoint Service</ProxyName>
             <UnattendedIDUser>DEMO\spdata</UnattendedIDUser>
@@ -716,7 +716,7 @@
          Also, we can configure SharePoint web app MIME type associations to allow direct opening of PDF files (instead of the default behavior of only allowing 'save as') -->
     <AdobePDF>
         <!-- The iFilter element supports a comma- or space-delimited list of server names on which to install the PDF iFilter. Useful if you want to selectively install ONLY on crawl servers, for example. -->
-        <iFilter Install="false" />
+        <iFilter Install="true" />
         <!-- Both the Icon and MIMEType elements support only "true" or "false"; you probably would want the icon on all farm servers, and MIMEType is a web app-wide setting anyhow, not bound to specific servers -->
         <Icon Configure="true" />
         <MIMEType Configure="true"/>
