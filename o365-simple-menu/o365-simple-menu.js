@@ -1,5 +1,5 @@
 //Office 365 Simple Menu
-//https://github.com/spjeff/spadmin/o365-simple-menu
+//https://github.com/spjeff/spadmin/tree/master/o365-simple-menu
 
 (function () {
 		

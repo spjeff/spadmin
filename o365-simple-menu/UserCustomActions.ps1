@@ -1,3 +1,4 @@
+#from @vgrem https://gist.github.com/vgrem/7984c171bb7bad167c60
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SharePoint.Client")
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SharePoint.Client.Runtime")
  
