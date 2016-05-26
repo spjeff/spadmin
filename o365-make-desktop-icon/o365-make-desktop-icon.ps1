@@ -9,6 +9,7 @@ $pw = Read-Host "Tenant - Password" -AsSecureString
 $hash = $pw | ConvertFrom-SecureString
 
 # shortcut
+"`$h = ""$hash""`n`$secpw = ConvertTo-SecureString -String `$h`n`$c = New-Object System.Management.Automation.PSCredential (""$user"", `$secpw)`nConnect-SPOService -URL $url -Credential `$c`nImport-Module -WarningAction SilentlyContinue Microsoft.Online.SharePoint.PowerShell`nGet-SPOSite" | Out-File "$home\o365-icon.ps1"
 
 # create shortcut
 $folder = [Environment]::GetFolderPath("Desktop")
