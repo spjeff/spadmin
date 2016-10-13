@@ -20,6 +20,7 @@
 	
 .LINK
 	http://www.github.com/spjeff/spadmin/run-oos-with-sp2016.ps1
+	http://www.spjeff.com/2016/10/13/install-oos-sharepoint-2016-pc/
 #>
 
 param (
