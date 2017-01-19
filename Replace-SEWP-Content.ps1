@@ -26,57 +26,62 @@ param(
 Add-PSSnapIn Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue | Out-Null
 
 function processPage ($web, $serverRelativeUrl) {
-	Write-Host "FILE: " $serverRelativeUrl
 	# inspect Web Parts on a given page
 	$manager = $web.GetLimitedWebPartManager($serverRelativeUrl, [System.Web.UI.WebControls.WebParts.PersonalizationScope]::Shared);
-	$webParts = $manager.WebParts;
+	
+	# exclude already processed ASPX pages
+	$found = $global:webPartsToUpdate |? {$_.FileURL -eq $manager.ServerRelativeUrl}
+	if (!$found) {
+		Write-Host "FILE: " $manager.ServerRelativeUrl
+		$webParts = $manager.WebParts;
 
-	foreach ($webPart in $webParts) {
-		# update Content Editor and Script Editor Web Parts
-		$type = $null
-		if ($webPart.GetType().ToString()-eq "Microsoft.SharePoint.WebPartPages.ContentEditorWebPart") {
-            $content = $webPart.Content.InnerText
-			if ($content -like "*$oldUrl*") {
-                $type = "CEWP"
-            }
-		}
-		if ($webPart.GetType().ToString() -eq "Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart") {
-            $content = $webPart.Content
-			if ($content -like "*$oldUrl*") {
-                $type = "SEWP"
-            }
-		}
-		if ($type) {
-			# Used as a check before committing updates
-			if ($readOnly) 
-			{
+		foreach ($webPart in $webParts) {
+			# update Content Editor and Script Editor Web Parts
+			$type = $null
+			if ($webPart.GetType().ToString()-eq "Microsoft.SharePoint.WebPartPages.ContentEditorWebPart") {
+				$content = $webPart.Content.InnerText
+				if ($content -like "*$oldUrl*") {
+					$type = "CEWP"
+				}
+			}
+			if ($webPart.GetType().ToString() -eq "Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart") {
+				$content = $webPart.Content
+				if ($content -like "*$oldUrl*") {
+					$type = "SEWP"
+				}
+			}
+			if ($type) {
+				# Used as a check before committing updates
 				$o = New-Object PSObject;
-				$o | Add-Member -MemberType Noteproperty -Name Title -Value $webPart.Title
+				$o | Add-Member -MemberType Noteproperty -Name Title -Value $manger.Url
 				$o | Add-Member -MemberType Noteproperty -Name Type -Value $webPart.GetType()
 				$o | Add-Member -MemberType Noteproperty -Name Content -Value $content
+				$o | Add-Member -MemberType Noteproperty -Name FileURL -Value $manager.ServerRelativeUrl
 				$global:webPartsToUpdate += $o;
-			} else {
-				Write-Host ("Updating: " + $webPart.Title)
-				if ($type -eq "CEWP") {
-					# Load Old Content
-					$oldXmlElement = $webPart.Content
-					$oldXmlContent = $oldXmlElement.InnerText
-	 
-					# Create new XML Element and update text
-					$xmlDoc = New-Object xml
-					$newXmlElement = $xmlDoc.CreateElement("NewContent")
-					$newXmlElement.InnerText = $oldXmlContent.Replace($oldUrl, $newUrl)
-	 
-					# Update content and save
-					$webPart.Content = $newXmlElement
-					$manager.SaveChanges($webPart)
-				}
-				if ($type -eq "SEWP") {
-					# Script Editor
-					$old = $webPart.Content
-					$new = $old.Replace($oldUrl, $newUrl)
-					$webPart.Content = $new
-					$manager.SaveChanges($webPart)
+					
+				if (!$readOnly) {
+					Write-Host ("Updating: " + $webPart.Title)
+					if ($type -eq "CEWP") {
+						# Load Old Content
+						$oldXmlElement = $webPart.Content
+						$oldXmlContent = $oldXmlElement.InnerText
+		 
+						# Create new XML Element and update text
+						$xmlDoc = New-Object xml
+						$newXmlElement = $xmlDoc.CreateElement("NewContent")
+						$newXmlElement.InnerText = $oldXmlContent.Replace($oldUrl, $newUrl)
+		 
+						# Update content and save
+						$webPart.Content = $newXmlElement
+						$manager.SaveChanges($webPart)
+					}
+					if ($type -eq "SEWP") {
+						# Script Editor
+						$old = $webPart.Content
+						$new = $old.Replace($oldUrl, $newUrl)
+						$webPart.Content = $new
+						$manager.SaveChanges($webPart)
+					}
 				}
 			}
 		}
@@ -86,7 +91,7 @@ function processPage ($web, $serverRelativeUrl) {
 function processLibrary ($web, $documentLibraryTitle) {
 	# process all ASPX within a given Document Library
 	try {
-		$list = $w.GetList($documentLibraryTitle)
+		$list = $web.Lists[$documentLibraryTitle]
 		if ($list) {
 			foreach ($item in $list.Items) {
 				processPage $web $item.File.ServerRelativeUrl
@@ -103,7 +108,7 @@ function processWeb ($web) {
 	processPage $web $web.RootFolder.WelcomePage
 	
 	# /SitePages/ and /Pages/ library
-	processLibrary $web "SitePages"
+	processLibrary $web "Site Pages"
 	processLibrary $web "Pages"
 }
 
