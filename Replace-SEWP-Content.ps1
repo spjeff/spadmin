@@ -17,8 +17,8 @@
 
 param(
 	[string]$url,			# Target Site Collection URL.  Loops all child webs.
-	[string]$oldUrl,		# Old string to find.
-	[string]$newUrl,		# New string to replace with.
+	[string]$oldText,		# Old string to find.
+	[string]$newText,		# New string to replace with.
 	[switch]$readOnly		# Read only operation.  Checks for Web Parts but will not change any content.
 )
 
@@ -40,13 +40,13 @@ function processPage ($web, $serverRelativeUrl) {
 			$type = $null
 			if ($webPart.GetType().ToString()-eq "Microsoft.SharePoint.WebPartPages.ContentEditorWebPart") {
 				$content = $webPart.Content.InnerText
-				if ($content -like "*$oldUrl*") {
+				if ($content -like "*$oldText*") {
 					$type = "CEWP"
 				}
 			}
 			if ($webPart.GetType().ToString() -eq "Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart") {
 				$content = $webPart.Content
-				if ($content -like "*$oldUrl*") {
+				if ($content -like "*$oldText*") {
 					$type = "SEWP"
 				}
 			}
@@ -69,7 +69,7 @@ function processPage ($web, $serverRelativeUrl) {
 						# Create new XML Element and update text
 						$xmlDoc = New-Object xml
 						$newXmlElement = $xmlDoc.CreateElement("NewContent")
-						$newXmlElement.InnerText = $oldXmlContent.Replace($oldUrl, $newUrl)
+						$newXmlElement.InnerText = $oldXmlContent.Replace($oldText, $newText)
 		 
 						# Update content and save
 						$webPart.Content = $newXmlElement
@@ -78,7 +78,7 @@ function processPage ($web, $serverRelativeUrl) {
 					if ($type -eq "SEWP") {
 						# Script Editor
 						$old = $webPart.Content
-						$new = $old.Replace($oldUrl, $newUrl)
+						$new = $old.Replace($oldText, $newText)
 						$webPart.Content = $new
 						$manager.SaveChanges($webPart)
 					}
