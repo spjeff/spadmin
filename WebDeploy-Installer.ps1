@@ -7,8 +7,8 @@
 #				given two parameters ZIP file and IIS website name.
 #============================================================================
 param (
-	[string]$zip 				# example "c:\temp\HelloTime.zip"
-	[string]$iisWebSiteName		# example "Portal"
+    [string]$zip, 				# example "c:\temp\HelloTime.zip"
+    [string]$iisWebSiteName		# example "Portal"
 )
 
 # Plugin
