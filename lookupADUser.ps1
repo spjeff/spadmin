@@ -11,7 +11,7 @@
 	File Name		: lookupADUser.ps1
 	Author			: Jeff Jones - @spjeff
 	Version			: 0.10
-	Last Modified	: 01-27-2017
+	Last Modified	: 01-29-2017
 	
 .LINK
 	http://www.github.com/spjeff/spadmin/lookupADUser.ps1
@@ -21,7 +21,7 @@
 $cacheUsers = New-Object System.Data.DataTable("users")
 $cols = @("DistinguishedName","Enabled","extensionAttribute4","Manager","Name","Mail","SamAccountName")
 foreach ($col in $cols) {
-	$cacheUsers.Columns.Add($col) | Out-Null
+    $cacheUsers.Columns.Add($col) | Out-Null
 }
 
 
@@ -38,7 +38,7 @@ Function lookupADUser ($login, $optFieldName) {
     # Return from cache
     if ($dv.Count -gt 0) {
         # Found
-	    return $dv
+        return $dv
     } else {
         # Insert
         $cmd = "SamAccountName -eq '$login'"
@@ -49,11 +49,11 @@ Function lookupADUser ($login, $optFieldName) {
         $user = Get-ADUser -Filter $sb -Properties extensionAttribute4,manager,enabled,Mail
         if ($user) {
             $row = $cacheUsers.NewRow()
-	        foreach ($col in $cols) {
-		        $row[$col] = $user.$col
-	        }
-	        $cacheUsers.Rows.Add($row) | Out-Null
-	        return $dv
+            foreach ($col in $cols) {
+                $row[$col] = $user.$col
+            }
+            $cacheUsers.Rows.Add($row) | Out-Null
+            return $dv
         } else {
             return $null
         }
@@ -63,12 +63,12 @@ Function lookupADUser ($login, $optFieldName) {
 
 # Search by userID
 $sb = {lookupADUser "userID"}
-measure-command $sb |ft
+Measure-Command $sb | Format-Table
 
 # Search by Email
 $sb = {lookupADUser "first_last@company.com" "Mail"}
-measure-command $sb |ft
+Measure-Command $sb | Format-Table
 
 # Search by DN
 $sb = {lookupADUser "CN=First Last,OU=Regular,OU=Accounts,DC=company,DC=com" "DistinguishedName"}
-measure-command $sb |ft
+Measure-Command $sb | Format-Table
