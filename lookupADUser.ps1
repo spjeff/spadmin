@@ -8,13 +8,13 @@
 	by any field such as Manager, Mail, or DN.
 	
 .NOTES
-	File Name		: lookupADUser.ps1
+	File Name		: LookupADUser.ps1
 	Author			: Jeff Jones - @spjeff
 	Version			: 0.10
 	Last Modified	: 01-29-2017
 	
 .LINK
-	http://www.github.com/spjeff/spadmin/lookupADUser.ps1
+	http://www.github.com/spjeff/spadmin/LookupADUser.ps1
 #>
 
 # DataTable cache
