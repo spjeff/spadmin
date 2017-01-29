@@ -8,8 +8,8 @@
 .NOTES
 	File Name		: ReadSecurePW.ps1
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.01
-	Last Modified	: 08-17-2016
+	Version			: 0.02
+	Last Modified	: 01-29-2017
 	
 .LINK
 	http://www.github.com/spjeff/spadmin/ReadSecurePW.ps1
@@ -24,7 +24,7 @@ Function GetSecurePassword($user) {
     # Registry HKCU folder
     $path = "HKCU:\Software\AdminScript"
     if (!(Test-Path $path)) {
-        md $path | Out-Null
+        mkdir $path | Out-Null
     }
     $name = $user
 	
