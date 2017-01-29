@@ -15,8 +15,8 @@
 .NOTES
 	File Name		: Run-OOS-with-SP2016.ps1
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.1
-	Last Modified	: 10-13-2015
+	Version			: 0.11
+	Last Modified	: 01-29-2019
 	
 .LINK
 	http://www.github.com/spjeff/spadmin/run-oos-with-sp2016.ps1
@@ -24,7 +24,7 @@
 #>
 
 param (
-	[switch]$disable
+    [switch]$disable
 )
 
 # connect HKEY_CLASSES_ROOT
@@ -72,23 +72,23 @@ HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{90160000-1153-0409-10
 
 # rename keys to bypass detection of OOS from SharePoint SETUP.EXE
 if (!$disable) {
-	Write-Host "ENABLE BLOCK" -Fore Yellow
-	foreach ($key in $oos) {
-		if ($key) {
-			$split = $key.Split("\\")
-			$name = $split[$split.length-1]
-			ren "$key" $name.Replace("0F01FEC","0F01FED").Replace("0FF1CE","0FF1DE")
-		}
-	}
-	Write-Host "now ready for SharePoint 2016 SETUP.EXE" -Fore Green
+    Write-Host "ENABLE BLOCK" -Fore Yellow
+    foreach ($key in $oos) {
+        if ($key) {
+            $split = $key.Split("\\")
+            $name = $split[$split.length-1]
+            Rename-Item "$key" $name.Replace("0F01FEC","0F01FED").Replace("0FF1CE","0FF1DE")
+        }
+    }
+    Write-Host "now ready for SharePoint 2016 SETUP.EXE" -Fore Green
 } else {
-	Write-Host "DISABLE BLOCK" -Fore Yellow
-	foreach ($key in $oos) {
-		if ($key) {
-			$split = $key.Split("\\")
-			$name = $split[$split.length-1]
-			ren $key.Replace("0F01FEC","0F01FED").Replace("0FF1CE","0FF1DE") "$name"
-		}
-	}
-	Write-Host "OOS keys back to original names" -Fore Green
+    Write-Host "DISABLE BLOCK" -Fore Yellow
+    foreach ($key in $oos) {
+        if ($key) {
+            $split = $key.Split("\\")
+            $name = $split[$split.length-1]
+            Rename-Item $key.Replace("0F01FEC","0F01FED").Replace("0FF1CE","0FF1DE") "$name"
+        }
+    }
+    Write-Host "OOS keys back to original names" -Fore Green
 }
