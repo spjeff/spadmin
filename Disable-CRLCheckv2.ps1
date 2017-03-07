@@ -24,3 +24,10 @@ ForEach ($bitsize in ("","64")) {
     $xml.DocumentElement.SelectSingleNode("runtime/generatePublisherEvidence").SetAttribute("enabled", "false")  | Out-Null
     $xml.Save("$env:windir\Microsoft.NET\Framework$bitsize\v2.0.50727\CONFIG\Machine.config")
 }
+
+# from https://social.technet.microsoft.com/Forums/lync/en-US/119e92b5-a5a1-4769-bb93-f2f01e91fcde/event-id-8321-crl-checking-on-sharepoint-2013?forum=sharepointadmin
+$rootCert = (Get-SPCertificateAuthority).RootCertificate 
+New-SPTrustedRootAuthority -Name "localNew" -Certificate $rootCert
+
+# MANUAL - Disable the automatic update of root certificates on the SharePoint Servers via Local Group Policy Editor.
+# Option 5 at https://blogs.msdn.microsoft.com/chaun/2014/05/01/best-practices-for-crl-checking-on-sharepoint-servers/
