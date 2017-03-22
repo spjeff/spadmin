@@ -8,8 +8,8 @@
 .NOTES
 	File Namespace	: Replace-SEWP-Content.ps1
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.12
-	Last Modified	: 01-24-2017
+	Version			: 0.13
+	Last Modified	: 03-22-2017
 .LINK
 	Source Code
 	http://www.github.com/spjeff/
@@ -130,6 +130,7 @@ function processAllDocLib ($web) {
     # Process all Views on all Doc Libs
     foreach ($list in $web.Lists) {
          foreach ($view in $list.Views) {
+            processPage $web ($web.Url + "/" + $view.Url)
          }
     }
 }
