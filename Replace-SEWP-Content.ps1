@@ -126,6 +126,14 @@ function processLibrary ($web, $documentLibraryTitle) {
     }
 }
 
+function processAllDocLib ($web) {
+    # Process all Views on all Doc Libs
+    foreach ($list in $web.Lists) {
+         foreach ($view in $list.Views) {
+         }
+    }
+}
+
 function processWeb ($web) {
     # Process only ASPX web part pages
     Write-Host "WEB:  " $web.Url
@@ -133,9 +141,12 @@ function processWeb ($web) {
     # Homepage
     processPage $web $web.RootFolder.WelcomePage
 	
-    # /SitePages/ and /Pages/ library
+    # /SitePages/ and /Pages/ library ASPX content pages
     processLibrary $web "Site Pages"
     processLibrary $web "Pages"
+
+    # process all Document Library Views
+    processAllDocLib $web
 }
 
 $global:webPartsToUpdate = @()
