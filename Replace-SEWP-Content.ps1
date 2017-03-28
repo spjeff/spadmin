@@ -8,8 +8,8 @@
 .NOTES
 	File Namespace	: Replace-SEWP-Content.ps1
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.13
-	Last Modified	: 03-22-2017
+	Version			: 0.15
+	Last Modified	: 03-28-2017
 .LINK
 	Source Code
 	http://www.github.com/spjeff/
@@ -28,89 +28,93 @@ Add-PSSnapIn Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue | Out
 
 function processPage ($web, $serverRelativeUrl) {
     # Inspect Web Parts on a given page
-    $manager = $web.GetLimitedWebPartManager($serverRelativeUrl, [System.Web.UI.WebControls.WebParts.PersonalizationScope]::Shared);
+	try {
+		$manager = $web.GetLimitedWebPartManager($serverRelativeUrl, [System.Web.UI.WebControls.WebParts.PersonalizationScope]::Shared);
+	} catch { }
 	
-    # Exclude already processed ASPX pages
-    $found = $global:webPartsToUpdate |? {$_.FileURL -eq $manager.ServerRelativeUrl}
-    if (!$found) {
-        Write-Host "FILE: " $manager.ServerRelativeUrl
-        $webParts = $manager.WebParts;
+	if ($manager) {
+		# Exclude already processed ASPX pages
+		$found = $global:webPartsToUpdate |? {$_.FileURL -eq $manager.ServerRelativeUrl}
+		if (!$found) {
+			Write-Host "FILE: " $manager.ServerRelativeUrl
+			$webParts = $manager.WebParts;
 
-        foreach ($webPart in $webParts) {
-            # Update Content Editor and Script Editor Web Parts
-            $type = $null
-            if ($webPart.GetType().ToString()-eq "Microsoft.SharePoint.WebPartPages.ContentEditorWebPart") {
-                $content = $webPart.Content.InnerText
-                if ($content -like "*$oldText*") {
-                    $type = "CEWP"
-                }
-            }
-            if ($webPart.GetType().ToString() -eq "Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart") {
-                $content = $webPart.Content
-                if ($content -like "*$oldText*") {
-                    $type = "SEWP"
-                }
-            }
-            if ($type) {
-                if ($overwriteWebPartTitle) {
-                    if ($overwriteWebPartTitle -ne $webPart.Title) {
-                        break
-                    }
-                }
-                # Used as a check before committing updates
-                $o = New-Object PSObject;
-                $o | Add-Member -MemberType Noteproperty -Name Title -Value $manger.Url
-                $o | Add-Member -MemberType Noteproperty -Name Type -Value $webPart.GetType()
-                $o | Add-Member -MemberType Noteproperty -Name Content -Value $content
-                $o | Add-Member -MemberType Noteproperty -Name FileURL -Value $manager.ServerRelativeUrl
-                $global:webPartsToUpdate += $o;
-					
-                if (!$readOnly) {
-                    Write-Host ("Updating: " + $webPart.Title)
-                    if ($type -eq "CEWP") {
-                        # Content Editor
-                        if ($overwriteWebPartTitle) {
-                            # Overwrite
-                            $xmlDoc = New-Object xml
-                            $newXmlElement = $xmlDoc.CreateElement("NewContent")
-                            $newXmlElement.InnerText = $newText
-			 
-                            # Save
-                            $webPart.Content = $newXmlElement
-                            $manager.SaveChanges($webPart)
-                        } else {
-                            # Load Old Content
-                            $oldXmlElement = $webPart.Content
-                            $oldXmlContent = $oldXmlElement.InnerText
-							
-                            # Replace
-                            $xmlDoc = New-Object xml
-                            $newXmlElement = $xmlDoc.CreateElement("NewContent")
-                            $newXmlElement.InnerText = $oldXmlContent.Replace($oldText, $newText)
-			 
-                            # Save
-                            $webPart.Content = $newXmlElement
-                            $manager.SaveChanges($webPart)
-                        }
-                    }
-                    if ($type -eq "SEWP") {
-                        # Script Editor
-                        if ($overwriteWebPartTitle) {
-                            # Overwrite
-                            $webPart.Content = $newText
-                            $manager.SaveChanges($webPart)
-                        } else {
-                            # Save
-                            $old = $webPart.Content
-                            $new = $old.Replace($oldText, $newText)
-                            $webPart.Content = $new
-                            $manager.SaveChanges($webPart)
-                        }
-                    }
-                }
-            }
-        }
-    }
+			foreach ($webPart in $webParts) {
+				# Update Content Editor and Script Editor Web Parts
+				$type = $null
+				if ($webPart.GetType().ToString()-eq "Microsoft.SharePoint.WebPartPages.ContentEditorWebPart") {
+					$content = $webPart.Content.InnerText
+					if ($content -like "*$oldText*") {
+						$type = "CEWP"
+					}
+				}
+				if ($webPart.GetType().ToString() -eq "Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart") {
+					$content = $webPart.Content
+					if ($content -like "*$oldText*") {
+						$type = "SEWP"
+					}
+				}
+				if ($type) {
+					if ($overwriteWebPartTitle) {
+						if ($overwriteWebPartTitle -ne $webPart.Title) {
+							break
+						}
+					}
+					# Used as a check before committing updates
+					$o = New-Object PSObject;
+					$o | Add-Member -MemberType Noteproperty -Name Title -Value $manger.Url
+					$o | Add-Member -MemberType Noteproperty -Name Type -Value $webPart.GetType()
+					$o | Add-Member -MemberType Noteproperty -Name Content -Value $content
+					$o | Add-Member -MemberType Noteproperty -Name FileURL -Value $manager.ServerRelativeUrl
+					$global:webPartsToUpdate += $o;
+						
+					if (!$readOnly) {
+						Write-Host ("Updating: " + $webPart.Title)
+						if ($type -eq "CEWP") {
+							# Content Editor
+							if ($overwriteWebPartTitle) {
+								# Overwrite
+								$xmlDoc = New-Object xml
+								$newXmlElement = $xmlDoc.CreateElement("NewContent")
+								$newXmlElement.InnerText = $newText
+				 
+								# Save
+								$webPart.Content = $newXmlElement
+								$manager.SaveChanges($webPart)
+							} else {
+								# Load Old Content
+								$oldXmlElement = $webPart.Content
+								$oldXmlContent = $oldXmlElement.InnerText
+								
+								# Replace
+								$xmlDoc = New-Object xml
+								$newXmlElement = $xmlDoc.CreateElement("NewContent")
+								$newXmlElement.InnerText = $oldXmlContent.Replace($oldText, $newText)
+				 
+								# Save
+								$webPart.Content = $newXmlElement
+								$manager.SaveChanges($webPart)
+							}
+						}
+						if ($type -eq "SEWP") {
+							# Script Editor
+							if ($overwriteWebPartTitle) {
+								# Overwrite
+								$webPart.Content = $newText
+								$manager.SaveChanges($webPart)
+							} else {
+								# Save
+								$old = $webPart.Content
+								$new = $old.Replace($oldText, $newText)
+								$webPart.Content = $new
+								$manager.SaveChanges($webPart)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 function processLibrary ($web, $documentLibraryTitle) {
