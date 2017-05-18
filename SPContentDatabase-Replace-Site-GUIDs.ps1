@@ -7,7 +7,7 @@
 .NOTES
 	File Namespace	: SPContentDatabase-Replace-Site-GUIDs
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.10
+	Version			: 0.11
 	Last Modified	: 05-18-2017
 
 .LINK
@@ -17,17 +17,24 @@
 
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory = $False, ValueFromPipeline = $false, HelpMessage = 'Target SQL instance hosting SharePoint Content Database.')]
+    [Parameter(Mandatory = $True, ValueFromPipeline = $false, HelpMessage = 'Target SQL instance hosting SharePoint Content Database.')]
     $sqlInstance,
 
-    [Parameter(Mandatory = $False, ValueFromPipeline = $false, HelpMessage = 'Target content database name.')]
-    $sqlDatabaseName
+    [Parameter(Mandatory = $True, ValueFromPipeline = $false, HelpMessage = 'Target content database name.')]
+    $sqlDatabaseName,
+	
+	[Parameter(Mandatory=$false, ValueFromPipeline=$false, HelpMessage='Dry run skips UPDATE statement and runs read-only.')]
+	[Alias("d")]
+	[switch]$dryRun = $false
 )
-$sqlInstance = "SPSQL"
-$sqlDatabaseName = "SP2013_SPJ_Content_projects82_000"
+
+# Echo params
+Write-Host "SPContentDatabase-Replace-Site-GUIDs"
+Write-Host "sqlInstance : $sqlInstance"
+Write-Host "sqlDatabaseName : $sqlInstance"
 
 # Plugin
-Import-Module SQLPS
+Import-Module SQLPS -ErrorAction SilentlyContinue | Out-Null
 
 Function InvokeSQL ($cmd) {
     # Run SQL command
@@ -36,7 +43,7 @@ Function InvokeSQL ($cmd) {
 
 Function HasColumn ($tableName, $columnName) {
     # Run SQL command
-    $result = InvokeSQL "SELECT name FROM sys.columns WHERE object_id=object_id('dbo.$tableName') AND name='$columnName'" $true
+    $result = InvokeSQL "SELECT name FROM sys.columns WHERE object_id=object_id('dbo.$tableName') AND name='$columnName'"
     if ($result) {
         return $true
     } else {
@@ -77,25 +84,31 @@ Function Main {
             $tableCount = (InvokeSQL "SELECT COUNT(*) FROM $tableName")[0]
             $date = (Get-Date).ToShortDateString()
             $time = (Get-Date).ToShortTimeString()
-            Write-Host "[$date $time] Update Table ($c/$d) - $tableName - Rows {0:N0}" -f $tableCount -Fore Yellow
+            Write-Host ("[$date $time] Update Table ($c/$d) - $tableName - Rows {0:N0}" -f $tableCount) -Fore Yellow
 
             # SQL UPDATE per target Site Collection table
             if ($oldID) {
                 $hasColumn = HasColumn $tableName "SiteId"
                 if ($hasColumn) {
-                    InvokeSQL "XUPDATE [$tableName] SET SiteId='$newID' WHERE SiteID='$oldID'"
+                    if (!$dryRun) {
+						InvokeSQL "UPDATE [$tableName] SET SiteId='$newID' WHERE SiteID='$oldID'"
+					}
                 }
 
                 $hasColumn = HasColumn $tableName "tp_SiteId"
                 if ($hasColumn) {
-                    InvokeSQL "XUPDATE [$tableName] SET tp_SiteId='$newID' WHERE tp_SiteId='$oldID'"
+					if (!$dryRun) {
+						InvokeSQL "UPDATE [$tableName] SET tp_SiteId='$newID' WHERE tp_SiteId='$oldID'"
+					}
                 }
             }
             $c++
         }
 
         # Site Table parent
-        InvokeSQL "UPDATE [AllSites] SET Id='$newID' WHERE Id='$oldID'"
+		if (!$dryRun) {
+			InvokeSQL "UPDATE [AllSites] SET Id='$newID' WHERE Id='$oldID'"
+		}
 
         $a++
     }
