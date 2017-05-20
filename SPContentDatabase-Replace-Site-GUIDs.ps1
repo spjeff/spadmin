@@ -7,8 +7,8 @@
 .NOTES
 	File Namespace	: SPContentDatabase-Replace-Site-GUIDs
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.11
-	Last Modified	: 05-18-2017
+	Version			: 0.12
+	Last Modified	: 05-19-2017
 
 .LINK
 	Source Code
@@ -31,7 +31,7 @@ param (
 # Echo params
 Write-Host "SPContentDatabase-Replace-Site-GUIDs"
 Write-Host "sqlInstance : $sqlInstance"
-Write-Host "sqlDatabaseName : $sqlInstance"
+Write-Host "sqlDatabaseName : $sqlDatabaseName"
 
 # Plugin
 Import-Module SQLPS -ErrorAction SilentlyContinue | Out-Null
