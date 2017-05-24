@@ -2,6 +2,8 @@
 
 [ from blog post at [http://www.spjeff.com/2017/05/22/clone-content-database-sql-copy-generate-spsite-guid/](http://www.spjeff.com/2017/05/22/clone-content-database-sql-copy-generate-spsite-guid/)
 
+---
+
 Tried of waiting for Backup-SPSite / Restore-SPSite?  Me too.  Why not clone the SQL content database with SQL backup and restore?  
 
 Well, SharePoint requires every Site Collection on a given to have a unique GUID.  When we clone a SQL content database and attempt Mount-SPContentDatabase an error comes up that the GUID already exists on the local farm.  No bueno.
