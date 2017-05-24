@@ -1,6 +1,6 @@
 # Clone Content Database – SQL Copy + Generate SPSite GUID
 
-[ from blog post at [http://www.spjeff.com/2017/05/22/clone-content-database-sql-copy-generate-spsite-guid/](http://www.spjeff.com/2017/05/22/clone-content-database-sql-copy-generate-spsite-guid/)
+* from blog post at [http://www.spjeff.com/2017/05/22/clone-content-database-sql-copy-generate-spsite-guid/](http://www.spjeff.com/2017/05/22/clone-content-database-sql-copy-generate-spsite-guid/)
 
 ---
 
