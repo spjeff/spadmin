@@ -167,37 +167,43 @@ class Handlers
 if (oSession.oRequest["User-Agent"] == "Mozilla/4.0 (compatible; MS FrontPage 14.0)" &&
 	oSession.PathAndQuery == "/_vti_inf.html") {
 	// Remove any compression or chunking
-	oSession.utilDecodeResponse();
-	var oBody = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
- 
-	// Replace strings
-	oBody = oBody.replace("FPVersion=\"15.00.0.000\"", "FPVersion=\"14.00.0.000\"");
-	oSession.utilSetResponseBody(oBody); 
+    oSession.utilDecodeResponse();
+    if (oSession.responseBodyBytes) {
+        var oBody = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
+    
+        // Replace strings
+        oBody = oBody.replace("FPVersion=\"15.00.0.000\"", "FPVersion=\"14.00.0.000\"");
+        oSession.utilSetResponseBody(oBody); 
+    }
 }
 
 //RPC
 if (oSession.oRequest["User-Agent"] == "MSFrontPage/14.0" &&
 	oSession.PathAndQuery == "/_vti_bin/shtml.dll/_vti_rpc") {
 	// Remove any compression or chunking
-	oSession.utilDecodeResponse();
-	var oBody = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
- 
-	// Replace strings
-	oBody = oBody.replace("major ver=15", "major ver=14");
-	oSession.utilSetResponseBody(oBody); 
+    oSession.utilDecodeResponse();
+    if (oSession.responseBodyBytes) {
+        var oBody = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
+    
+        // Replace strings
+        oBody = oBody.replace("major ver=15", "major ver=14");
+        oSession.utilSetResponseBody(oBody); 
+    }
 }
  
 //AUTHOR
 var suffix = "/_vti_bin/_vti_aut/author.dll";
 if (oSession.oRequest["User-Agent"] == "MSFrontPage/14.0" &&
 	oSession.PathAndQuery.indexOf(suffix, oSession.PathAndQuery.length - suffix.length) !== -1) {
-	// Remove any compression or chunking
-	oSession.utilDecodeResponse();
-	var oBody = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
- 
-	// Replace strings
-	oBody = oBody.replace("<li>SR|15.0", "<li>SR|14.0");
-	oSession.utilSetResponseBody(oBody); 
+    if (oSession.responseBodyBytes) {
+        // Remove any compression or chunking
+        oSession.utilDecodeResponse();
+        var oBody = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
+    
+        // Replace strings
+        oBody = oBody.replace("<li>SR|15.0", "<li>SR|14.0");
+        oSession.utilSetResponseBody(oBody); 
+    }
 }
 // END BLOG POST
 
