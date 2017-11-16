@@ -88,7 +88,6 @@ function RestartExcel() {
 
 # Main
 $cmdpath = $MyInvocation.MyCommand.Path
-$cmdfolder = Split-Path $cmdpath
 if ($install) {
     Installer
 }
