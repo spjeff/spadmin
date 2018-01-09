@@ -7,8 +7,8 @@
 .NOTES
 	File Namespace	: SPContentDatabase-Replace-Site-GUIDs
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.12
-	Last Modified	: 05-19-2017
+	Version			: 0.13
+	Last Modified	: 01-09-2017
 
 .LINK
 	Source Code
@@ -88,6 +88,7 @@ Function Main {
 
             # SQL UPDATE per target Site Collection table
             if ($oldID) {
+                # Two different SQL schema with Site Collection ID
                 $hasColumn = HasColumn $tableName "SiteId"
                 if ($hasColumn) {
                     if (!$dryRun) {
