@@ -43,7 +43,7 @@ Function InvokeSQL ($cmd) {
 
 Function HasColumn ($tableName, $columnName) {
     # Run SQL command
-    $result = InvokeSQL "SELECT name FROM sys.columns WHERE object_id=object_id('dbo.$tableName') AND name='$columnName'"
+    $result = InvokeSQL "SELECT name FROM sys.columns WHERE object_id=object_id('$tableName') AND name='$columnName'"
     if ($result) {
         return $true
     } else {
@@ -53,7 +53,7 @@ Function HasColumn ($tableName, $columnName) {
 
 Function Main {
     # Enum site collections
-    $sites = InvokeSQL "SELECT id FROM [AllSites]"
+    $sites = InvokeSQL "SELECT id FROM [dbo.][AllSites]"
 
     # Loop per Site Collection"
     $a = 1
@@ -73,7 +73,7 @@ Function Main {
         Write-Host "- Replace Site ($a/$b) GUID $oldID with $newID" -Fore Yellow
 
         # Enum tables
-        $tables = InvokeSQL "SELECT name FROM [sysobjects] WHERE xtype='U' ORDER BY name"
+        $tables = InvokeSQL "SELECT DISTINCT sys.schemas.name + '.' +  sys.objects.name AS [name] FROM sys.objects INNER JOIN sys.schemas ON sys.objects.schema_id = sys.schemas.schema_id INNER JOIN sys.columns c ON sys.objects.OBJECT_ID = c.OBJECT_ID WHERE type='U' and (c.name LIKE '%SiteId%' or c.name LIKE '%tp_SiteId%') ORDER BY 1"
 
         # Loop per table
         $c = 1
@@ -92,14 +92,14 @@ Function Main {
                 $hasColumn = HasColumn $tableName "SiteId"
                 if ($hasColumn) {
                     if (!$dryRun) {
-						InvokeSQL "UPDATE [$tableName] SET SiteId='$newID' WHERE SiteID='$oldID'"
+						InvokeSQL "UPDATE $tableName SET SiteId='$newID' WHERE SiteID='$oldID'"
 					}
                 }
 
                 $hasColumn = HasColumn $tableName "tp_SiteId"
                 if ($hasColumn) {
 					if (!$dryRun) {
-						InvokeSQL "UPDATE [$tableName] SET tp_SiteId='$newID' WHERE tp_SiteId='$oldID'"
+						InvokeSQL "UPDATE $tableName SET tp_SiteId='$newID' WHERE tp_SiteId='$oldID'"
 					}
                 }
             }
@@ -108,7 +108,7 @@ Function Main {
 
         # Site Table parent
 		if (!$dryRun) {
-			InvokeSQL "UPDATE [AllSites] SET Id='$newID' WHERE Id='$oldID'"
+			InvokeSQL "UPDATE [dbo].[AllSites] SET Id='$newID' WHERE Id='$oldID'"
 		}
 
         $a++
