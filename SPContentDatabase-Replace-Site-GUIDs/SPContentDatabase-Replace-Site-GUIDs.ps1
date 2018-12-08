@@ -43,7 +43,8 @@ Function InvokeSQL ($cmd) {
 
 Function HasColumn ($tableName, $columnName) {
     # Run SQL command
-    $result = InvokeSQL "SELECT name FROM sys.columns WHERE object_id=object_id('dbo.$tableName') AND name='$columnName'"
+    $cmd =  "SELECT name FROM sys.columns WHERE object_id=object_id(`'$tableName`') AND name=`'$columnName`'"
+    $result = InvokeSQL $cmd
     if ($result) {
         return $true
     } else {
@@ -73,7 +74,8 @@ Function Main {
         Write-Host "- Replace Site ($a/$b) GUID $oldID with $newID" -Fore Yellow
 
         # Enum tables
-        $tables = InvokeSQL "SELECT name FROM [sysobjects] WHERE xtype='U' ORDER BY name"
+	$queryTables = "SELECT S.name + '.' + O.name AS 'name' FROM sys.objects AS O JOIN  sys.schemas S ON O.schema_id = S.schema_id WHERE O.type = 'U' ORDER BY name"
+        $tables = InvokeSQL $queryTables
 
         # Loop per table
         $c = 1
@@ -92,14 +94,14 @@ Function Main {
                 $hasColumn = HasColumn $tableName "SiteId"
                 if ($hasColumn) {
                     if (!$dryRun) {
-						InvokeSQL "UPDATE [$tableName] SET SiteId='$newID' WHERE SiteID='$oldID'"
+						InvokeSQL "UPDATE $tableName SET SiteId='$newID' WHERE SiteID='$oldID'"
 					}
                 }
 
                 $hasColumn = HasColumn $tableName "tp_SiteId"
                 if ($hasColumn) {
 					if (!$dryRun) {
-						InvokeSQL "UPDATE [$tableName] SET tp_SiteId='$newID' WHERE tp_SiteId='$oldID'"
+						InvokeSQL "UPDATE $tableName SET tp_SiteId='$newID' WHERE tp_SiteId='$oldID'"
 					}
                 }
             }
