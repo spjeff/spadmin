@@ -53,6 +53,74 @@ Function HasColumn ($tableName, $columnName) {
 }
 
 Function Main {
+    # Purge tables [AuditData] and [EventCache]
+    $tsqlAudit = @"
+    DROP TABLE [AuditData]
+    CREATE TABLE [dbo].[AuditData](
+        [SiteId] [uniqueidentifier] NOT NULL,
+        [ItemId] [uniqueidentifier] NOT NULL,
+        [ItemType] [smallint] NOT NULL,
+        [UserId] [int] NULL,
+        [AppPrincipalId] [int] NULL,
+        [MachineName] [nvarchar](128) NULL,
+        [MachineIp] [nvarchar](20) NULL,
+        [DocLocation] [nvarchar](260) NULL,
+        [LocationType] [tinyint] NULL,
+        [Occurred] [datetime] NOT NULL,
+        [Event] [int] NOT NULL,
+        [EventName] [nvarchar](128) NULL,
+        [EventSource] [tinyint] NOT NULL,
+        [SourceName] [nvarchar](256) NULL,
+        [EventData] [nvarchar](max) NULL
+    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+    GO
+    ALTER TABLE [dbo].[AuditData] SET (LOCK_ESCALATION = DISABLE)
+    GO
+"@
+
+    $tsqlEventCache = @"
+    CREATE TABLE [dbo].[EventCache](
+        [EventTime] [datetime] NOT NULL,
+        [Id] [bigint] IDENTITY(1,1) NOT NULL,
+        [SiteId] [uniqueidentifier] NOT NULL,
+        [WebId] [uniqueidentifier] NULL,
+        [ListId] [uniqueidentifier] NULL,
+        [ItemId] [int] NULL,
+        [DocId] [uniqueidentifier] NULL,
+        [Guid0] [uniqueidentifier] NULL,
+        [Int0] [int] NULL,
+        [Int1] [int] NULL,
+        [ContentTypeId] [dbo].[tContentTypeId] NULL,
+        [ItemName] [nvarchar](255) NULL,
+        [ItemFullUrl] [nvarchar](260) NULL,
+        [EventType] [int] NOT NULL,
+        [ObjectType] [int] NOT NULL,
+        [ModifiedBy] [nvarchar](255) NULL,
+        [TimeLastModified] [datetime] NOT NULL,
+        [EventData] [varbinary](max) NULL,
+        [ACL] [varbinary](max) NULL,
+        [DocClientId] [varbinary](16) NULL,
+        [CorrelationId] [uniqueidentifier] NULL,
+        [Guid1] [uniqueidentifier] NULL,
+        [TinyInt0] [tinyint] NULL,
+        [Text0] [nvarchar](255) NULL,
+        [OriginatorId] [uniqueidentifier] NULL,
+     CONSTRAINT [EventCache_Id] PRIMARY KEY CLUSTERED 
+    (
+        [Id] ASC,
+        [SiteId] ASC
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = ON, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
+    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+    GO
+    
+    ALTER TABLE [dbo].[EventCache] SET (LOCK_ESCALATION = DISABLE)
+    GO
+"@
+
+    # Execute SQL Query
+    InvokeSQL $tsqlAudit
+    InvokeSQL $tsqlEventCache
+
     # Enum site collections
     $sites = InvokeSQL "SELECT id FROM [AllSites]"
 
