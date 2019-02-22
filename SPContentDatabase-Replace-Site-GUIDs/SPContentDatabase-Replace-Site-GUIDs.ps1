@@ -7,8 +7,8 @@
 .NOTES
 	File Namespace	: SPContentDatabase-Replace-Site-GUIDs
 	Author			: Jeff Jones - @spjeff
-	Version			: 0.13
-	Last Modified	: 01-09-2017
+	Version			: 0.14
+	Last Modified	: 02-22-2019
 
 .LINK
 	Source Code
