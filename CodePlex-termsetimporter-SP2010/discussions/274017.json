@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "677295",
+    "ThreadId": "274017",
+    "Html": "\r\n<p>When I try to export a term group from the term store, I keep getting a dialog &quot;Directory does not exist&quot;.&nbsp; I am putting in a valid site url, the group name exists in the term store.</p>\r\n<p>&nbsp;</p>\r\n<p>Any thoughts?</p>\r\n",
+    "PostedDate": "2011-09-27T11:20:02.553-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "814821",
+    "ThreadId": "274017",
+    "Html": "<p>This error message appears when path to \".CVS files folder\" is incorrectly set.</p>",
+    "PostedDate": "2012-03-23T12:47:01.28-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]

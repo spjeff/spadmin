@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1088757",
+    "ThreadId": "455609",
+    "Html": "I tried to contact Peter \r<br />\n'<a href=\"mailto:peter.dotsenko@ascentium.com'\r\nHello\" rel=\"nofollow\">peter.dotsenko@ascentium.com'\r\nHello</a> Peter, I am using your very helpful Bulk CSV Importer for SharePoint 2010 version 1.0.0.3 that I downloaded from Codeplex - <a href=\"http://termsetimporter.codeplex.com/\" rel=\"nofollow\">http://termsetimporter.codeplex.com/</a>.\r<br />\nI wonder if you know if it works on SharePoint 2013?\r<br />\n<br />\nThank you!\r<br />\n<br />\nmatt\r<br />\n<br />\n<br />\nDiagnostic information for administrators:\r<br />\n<br />\nGenerating server: mail.cactuscommerce.com\r<br />\n<br />\n<a href=\"mailto:peter.dotsenko@ascentium.com\" rel=\"nofollow\">peter.dotsenko@ascentium.com</a><br />\n<h1>&lt; #5.0.0 smtp; 5.1.1 - Bad destination email address 'reject' (delivery attempts: 0)&gt; #SMTP</h1>\nOriginal message headers:\r<br />\n<br />\nReceived: from ironport.DOMAIN.com ([208.252.4.4])  by mail.smith.co with\r<br />\n ESMTP; 05 Sep 2013 10:03:15 -0400<br />\n",
+    "PostedDate": "2013-09-05T07:05:43.167-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "655952",
+    "ThreadId": "268568",
+    "Html": "\r\n<p>3&nbsp;questions, actually.</p>\r\n<ol>\r\n<li>Where does the Group Name come from? - I don't see a group name in my managed metadata service Term Store Management Tool\r\n</li><li>do you know why, after 'Done Importing *.csv, I see nothing in my managed metadataservice Term Store Management Tool?\r\n</li><li>Lastly, am I supposted to use the site itself, or the central admin url? </li></ol>\r\n<div id=\"_mcePaste\" style=\"left:-10000px; overflow:hidden; width:1px; top:0px; height:1px\">\r\n&#65279;</div>\r\n",
+    "PostedDate": "2011-08-10T09:45:16.793-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "666970",
+    "ThreadId": "268568",
+    "Html": "<p>1. Group name is the name of the taxonomy group that you want to import/export to.</p>\r\n<p>2. no i dont :)</p>\r\n<p>3. You can use any url of a sharepoint site. API will figure out where to go for your taxonomy.</p>\r\n<p>Thanks for using my app!</p>",
+    "PostedDate": "2011-09-02T12:36:34.673-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]

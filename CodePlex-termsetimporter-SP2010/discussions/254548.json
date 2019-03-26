@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "599992",
+    "ThreadId": "254548",
+    "Html": "\r\n<p>Hello, first of all great idea for a tool to cover this gap however after placing within my environment, the tool is unable to see the store. LAcking that capability I am unable to set the store and thus export the term set. There is no error until I try\r\n to export the termset which obviously cant be exported because there is no 'Set' store. Is there any reason you can think of that I am unable to see the stores?</p>\r\n",
+    "PostedDate": "2011-04-19T13:52:36.543-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "600023",
+    "ThreadId": "254548",
+    "Html": "<p>Figured it out after visiting Admin....I did not have full permissions. After testing with his account, it worked.</p>",
+    "PostedDate": "2011-04-19T14:33:00.75-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "616122",
+    "ThreadId": "254548",
+    "Html": "<p>great, glad this tool helped you! Thank you for using it.</p>",
+    "PostedDate": "2011-05-20T15:33:42.88-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]

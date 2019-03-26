@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 29079,
+    "Title": "Not working with more MMS configured"
+  },
+  {
+    "Id": 29291,
+    "Title": "Export Complete, but no file"
+  },
+  {
+    "Id": 30300,
+    "Title": "The export/ import generates a file which looses structure"
+  },
+  {
+    "Id": 30881,
+    "Title": "export files contain progressively more term sets"
+  },
+  {
+    "Id": 31084,
+    "Title": "Exception when \"Group Name not found\""
+  },
+  {
+    "Id": 31636,
+    "Title": "The & character is exported as ï¼†"
+  }
+]

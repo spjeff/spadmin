@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "1239239",
+    "ThreadId": "543707",
+    "Html": "I'm trying to export metadata from Sharepoint 2013 (or is that not supported?). As there is no installer, I'm not sure where to run the tool from, so I try at my downloads folder. Yes, I'm admin to Sharepoint as well as local admin to the server. After filling the fields, I push the export button and get an error saying:\r<br />\n<br />\nSystem.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.SharePoint.Taxonomy, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c' or one of its dependencies. The system cannot find the file specified.\r<br />\nFile name: 'Microsoft.SharePoint.Taxonomy, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c'\r<br />\n   at BulkCSVImporter.Form1.GetTaxonomyHandle()\r<br />\n   at BulkCSVImporter.Form1.btnExport_Click(Object sender, EventArgs e)\r<br />\n   at System.Windows.Forms.Control.OnClick(EventArgs e)\r<br />\n   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)\r<br />\n   at System.Windows.Forms.Control.WmMouseUp(Message&amp; m, MouseButtons button, Int32 clicks)\r<br />\n   at System.Windows.Forms.Control.WndProc(Message&amp; m)\r<br />\n   at System.Windows.Forms.ButtonBase.WndProc(Message&amp; m)\r<br />\n   at System.Windows.Forms.Button.WndProc(Message&amp; m)\r<br />\n   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message&amp; m)\r<br />\n   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)<br />\n",
+    "PostedDate": "2014-04-29T04:43:50.057-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1250722",
+    "ThreadId": "543707",
+    "Html": "You are correct, this needs to be re-compiled for 2013. <br />\n",
+    "PostedDate": "2014-05-28T23:08:05.95-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]

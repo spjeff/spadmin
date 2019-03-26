@@ -1,0 +1,85 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2012-03-23T12:30:32.303-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When you have several term sets in a term set group, the export files contain progressively more term sets in each file, e.g. if you have TS1, TS2, TS3, export will give you these files:\n- F1 containing TS1\n- F2 containing TS1 & TS2\n- F3 containing TS1 & TS2 & TS3\n \nIn Form1.ca in method ExportTermSet() in outer foreach loop the exportData string builder is not reset so it accumulates all prior terms sets for each successive output file. If you make me a dev on this project I'll fix the error and look at adding some more features.",
+    "LastUpdatedDate": "2013-05-16T03:11:23.767-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "termsetimporter",
+    "ReportedDate": "2011-06-17T19:17:37.233-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "export files contain progressively more term sets",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 4,
+    "Id": 30881
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I also had this problem which makes program nearly unusable.  Otherwise, a great program.",
+      "PostedDate": "2011-08-15T10:46:48.907-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-09-02T12:45:21.243-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-09-12T06:12:07.363-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "In addtion it will name Groups foulty in a given example like F1, F11, F12",
+      "PostedDate": "2011-09-12T06:18:11.983-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-09-27T13:25:25.273-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Same problem here to. Please fix this!",
+      "PostedDate": "2012-02-07T13:34:46.323-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Resolved with changeset 96885.",
+      "PostedDate": "2012-03-23T12:30:32.303-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-14T13:19:30.03-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T03:11:23.767-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

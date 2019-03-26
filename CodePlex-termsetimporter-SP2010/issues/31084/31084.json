@@ -1,0 +1,65 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2012-03-23T12:30:32.85-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "In the export process, if the \"Group Name\" is not found, the application throw an exception (ArgumentOutOfRangeException)",
+    "LastUpdatedDate": "2013-05-16T03:11:23.603-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "termsetimporter",
+    "ReportedDate": "2011-07-27T17:02:39.687-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Exception when \"Group Name not found\"",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 31084
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I'll take a look thanks for reporting this.",
+      "PostedDate": "2011-09-02T12:37:54.29-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-09-02T12:46:02.85-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Resolved with changeset 96885.",
+      "PostedDate": "2012-03-23T12:30:32.85-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-14T13:19:29.883-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T03:11:23.603-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

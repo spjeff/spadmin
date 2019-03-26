@@ -1,0 +1,70 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "Thanks johnnliu, i updated my code to TermStore termStore &#61; session.DefaultKeywordsTermStore&#59; ",
+    "ClosedDate": "2011-01-28T11:56:57.77-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "After executing the export the status reads, export completed, yet the \"export\" is nowhere to be found.  Any tips on execution re: \"Run as\", permissions et al?",
+    "LastUpdatedDate": "2013-05-16T03:11:24.067-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "termsetimporter",
+    "ReportedDate": "2010-10-28T23:53:29.49-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Export Complete, but no file",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 3,
+    "Id": 29291
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Null Reference error in ExportTermSet function.\r\n\r\nChange \r\nTermStore termStore = session.DefaultSiteCollectionTermStore;\r\n\r\nto\r\nTermStore termStore = session.DefaultKeywordsTermStore;\r\n",
+      "PostedDate": "2010-12-16T17:59:28.32-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-01-27T16:16:52.833-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Thanks johnnliu, i updated my code to TermStore termStore = session.DefaultKeywordsTermStore;",
+      "PostedDate": "2011-01-28T11:26:56.61-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-01-28T11:56:57.77-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-14T13:19:30.343-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T03:11:24.067-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

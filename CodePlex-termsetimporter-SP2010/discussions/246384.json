@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "567502",
+    "ThreadId": "246384",
+    "Html": "\r\n<p>Does this need to be installed on server or can it be run from remote machine.</p>\r\n<p>I keep getting errors when installed on my PC&nbsp;it states&nbsp;that it couldnt find group.</p>\r\n<p>I am using the following inputs <a href=\"http://server:5555\">http://server:5555</a> and Managed Metadat Service as Group Name.</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-02-16T16:09:02.79-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "568826",
+    "ThreadId": "246384",
+    "Html": "<p>It needs to be on the server. It will not run remotely. &nbsp;</p>",
+    "PostedDate": "2011-02-18T17:20:28.503-08:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]

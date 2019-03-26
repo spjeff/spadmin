@@ -1,0 +1,114 @@
+[
+  {
+    "Id": "712281",
+    "ThreadId": "282987",
+    "Html": "\r\n<p>What permissions are required to connect to the Term Store using this application?</p>\r\n<p>I am running the application under a user account that is a farm admin and term store admin. &nbsp;I cannot seem to pull the term store groups or the Managed Store information.</p>\r\n",
+    "PostedDate": "2011-12-14T10:59:11.18-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "814820",
+    "ThreadId": "282987",
+    "Html": "<p>make sure you have permissions set correctly:</p>\r\n<p>http://termsetimporter.codeplex.com/releases/84785/download/358220</p>",
+    "PostedDate": "2012-03-23T12:43:55.99-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "845966",
+    "ThreadId": "282987",
+    "Html": "<p>Hi,</p>\r\n<p>i can't get the term store too. The permissions are set like in the pdf.</p>\r\n<p>When I click \"Get Stores\" it seems like the application is working for a few seconds. When it is ready, the mid screen is still blan without any stores.</p>\r\n<p>Do you got an idea what this could be?</p>",
+    "PostedDate": "2012-06-07T04:08:24.877-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "860719",
+    "ThreadId": "282987",
+    "Html": "<p>I am also facing this issue.</p>\r\n<p>I am the system admin, with permissions on the term store and the group.</p>\r\n<p>When I try to get the stores I don't get anything on the window app.</p>\r\n<p>I think this is an application issue.</p>",
+    "PostedDate": "2012-07-12T02:27:03.937-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "870390",
+    "ThreadId": "282987",
+    "Html": "<p>I sure hope not, otherwise&nbsp;<span>7278 downloaders wouldnt get anywhere.</span></p>\r\n<p>Sharepoint is complex system, i am sure there is something with permissions here.</p>\r\n<p>-p</p>",
+    "PostedDate": "2012-07-16T15:58:12.47-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "873646",
+    "ThreadId": "282987",
+    "Html": "<p>I'm facing the same problem, except when I run the program from Visual Studio, it works flawlessly.&nbsp; Any idea what could be the distinction between running from Visual Studio and running from Windows?&nbsp; I'm running the .exe as administrator but still no go.&nbsp; I checked Task Manager for both cases and both processes are running as the same account.&nbsp; Not sure what could be wrong here.....</p>",
+    "PostedDate": "2012-07-18T07:21:35.623-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "900755",
+    "ThreadId": "282987",
+    "Html": "<p>So I expereinced the same issue. I opend the project in VS and still could not connect. I then discovered that I indeed did not have permissions and it worked in VS. Then tried the downloaded exe, not the one I compiled from VS and it did not work. I then grabbed my compiled exe from the bin folder in VS and that one worked. I think the downloadable exe&nbsp;may have an issue. I hope this helps someone else.</p>\r\n<p>Buy the way Awesome tool and thanks for you time in writing it and making it availible to the rest of us.</p>",
+    "PostedDate": "2012-08-17T09:50:56.403-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "901471",
+    "ThreadId": "282987",
+    "Html": "\r\n<p>I'm having the same issue. I ran the tool as the farm admin account.</p>\r\n<p><strong>UPDATE:</strong> I downloaded the <span id=\"releaseListReleaseDateStable1\" title=\"1/28/2011 10:00:00 AM\">\r\nJan 28 2011 version which is able to retrieve the Term Store and works perfectly. Therefore this is probably not a permission issue. I'd suspect that SharePoint a hotfix broke the functionality of the tool. I am using SharePoint Server Enterprise 2010 SP1 (14.0.6029.1000).</span></p>\r\n",
+    "PostedDate": "2012-08-20T03:07:49.927-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "902085",
+    "ThreadId": "282987",
+    "Html": "<blockquote style=\"padding-bottom: 0px; font-style: italic; margin: 0.25em 1em 0px; padding-left: 0.25em; padding-right: 0.25em; padding-top: 0px; border: #ccc 0.1em solid;\"><strong>levidos wrote:</strong><br />\r\n<p>I'm having the same issue. I ran the tool as the farm admin account.</p>\r\n<p><strong>UPDATE:</strong> I downloaded the <span id=\"releaseListReleaseDateStable1\" title=\"1/28/2011 10:00:00 AM\">Jan 28 2011 version which is able to retrieve the Term Store and works perfectly. Therefore this is probably not a permission issue. I'd suspect that SharePoint a hotfix broke the functionality of the tool. I am using SharePoint Server Enterprise 2010 SP1 (14.0.6029.1000).</span></p>\r\n</blockquote>\r\n<p>&nbsp;</p>\r\n<p>Hi all, just wanted to verify that I too had the same issue with the latest version. I have a 3-tier farm with a mix of claims and windows authentication. No matter what I did the latest version would not find the term stores. I have 2, the default and one that I created for internal use. I tried on both the web frontend and also the application server.</p>\r\n<p>I then downloaded the previous Jan 28 2011 version and it works flawlessly. I agree, a hotfix might have broken functionality in the tool. I am running the same version sp ent farm 14.0.6029.1000.</p>",
+    "PostedDate": "2012-08-21T12:26:57.537-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "906536",
+    "ThreadId": "282987",
+    "Html": "<p>Not to pile on, but I had the same issue, and the Jan 2011 version worked like a champ.&nbsp; Great tool.&nbsp; Might want to take a look at the current version, though.</p>",
+    "PostedDate": "2012-08-30T13:30:22.773-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "910503",
+    "ThreadId": "282987",
+    "Html": "<p>Hmm, i just ran current version and Jan 2011 version and only Jan 2011 version works. I have a RTM box. I will look into it.</p>\r\n<p>Which is very weird, when i released latest version i tested it to make sure it works. Maybe something wrong with the exe indeed.</p>\r\n<p>Thanks.</p>",
+    "PostedDate": "2012-09-10T09:56:05.017-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "910525",
+    "ThreadId": "282987",
+    "Html": "<blockquote style=\"border: solid .1em #ccc; font-style: italic; margin: .25em 1em 0 1em; padding: 0 .25em 0 .25em;\"><strong>dotsad wrote:</strong><br />\r\n<p>Hmm, i just ran current version and Jan 2011 version and only Jan 2011 version works. I have a RTM box. I will look into it.</p>\r\n<p>Which is very weird, when i released latest version i tested it to make sure it works. Maybe something wrong with the exe indeed.</p>\r\n<p>Thanks.</p>\r\n</blockquote>\r\n<p>&nbsp;</p>\r\n<p>I just uploaded same exe but newly build from VS, this one works on both of my SP environments as the previous download didn't.</p>\r\n<p>Thanks.</p>",
+    "PostedDate": "2012-09-10T10:37:14.353-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "921298",
+    "ThreadId": "282987",
+    "Html": "<blockquote style=\"padding-bottom: 0px; font-style: italic; margin: 0.25em 1em 0px; padding-left: 0.25em; padding-right: 0.25em; padding-top: 0px; border: #ccc 0.1em solid;\"><strong>dotsad wrote:</strong><br />\r\n<blockquote style=\"padding-bottom: 0px; font-style: italic; margin: 0.25em 1em 0px; padding-left: 0.25em; padding-right: 0.25em; padding-top: 0px; border: #ccc 0.1em solid;\"><strong>dotsad wrote:</strong><br />\r\n<p>Hmm, i just ran current version and Jan 2011 version and only Jan 2011 version works. I have a RTM box. I will look into it.</p>\r\n<p>Which is very weird, when i released latest version i tested it to make sure it works. Maybe something wrong with the exe indeed.</p>\r\n<p>Thanks.</p>\r\n</blockquote>\r\n<p>&nbsp;</p>\r\n<p>I just uploaded same exe but newly build from VS, this one works on both of my SP environments as the previous download didn't.</p>\r\n<p>Thanks.</p>\r\n</blockquote>\r\n<p>Having an issue that it cannot see all the Term Stores.&nbsp; I have a term store setup for the web application itself but the only termstore it sees on \"Get Stores\" is the main connection to the MMS on the enterprise farm.&nbsp; How can I get it to see the local TermStore to export those sets?</p>\r\n<p>&nbsp;</p>",
+    "PostedDate": "2012-10-03T08:08:58.18-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "933558",
+    "ThreadId": "282987",
+    "Html": "<p>I am not sure if this helps.&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>I am trying to export some terms for a client who is running SP1 only.&nbsp; I wasn't able connect the term store or export remotely - all the security permssions and running the bulk exporter as administrator.&nbsp;&nbsp; I then rdp to the server,&nbsp;downloaded the exporter then&nbsp;ran the exporter as administrator.&nbsp;&nbsp;Life is good as I was dreading having to manually add each term.</p>\r\n<p>&nbsp;</p>\r\n<p>Daniel</p>",
+    "PostedDate": "2012-10-28T12:22:29.347-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

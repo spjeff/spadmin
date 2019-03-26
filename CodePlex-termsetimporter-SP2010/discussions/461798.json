@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "1106086",
+    "ThreadId": "461798",
+    "Html": "<ol>\n<li>I am an admin on the server</li>\n<li>\nI am the term store administrator<br />\n</li>\n</ol>\nbeing on the server itself, I run the app and click Select Managed Store, then click 'Get Stores'\r<br />\nnothing shows in the textbox.\r<br />\n<br />\nDo you know why that might happen?<br />\n",
+    "PostedDate": "2013-10-10T09:48:33.69-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1106088",
+    "ThreadId": "461798",
+    "Html": "Sorry - I didn't realize I had to type in the SharePoint site first, before going to the Options - - \r<br />\nOnce I did that, it worked<br />\n",
+    "PostedDate": "2013-10-10T09:52:52.037-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": "2013-10-10T09:52:55.373-07:00"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "820065",
+    "ThreadId": "351230",
+    "Html": "\r\n<p>Does this tool work with remote SharePoint servers or just the local server?</p>\r\n",
+    "PostedDate": "2012-04-04T14:22:05.073-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "830433",
+    "ThreadId": "351230",
+    "Html": "<p>Local only.</p>",
+    "PostedDate": "2012-04-30T18:35:44.133-07:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]

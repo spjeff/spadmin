@@ -1,0 +1,77 @@
+[
+  {
+    "Id": "0",
+    "Name": "TermSet Importer-Exporter",
+    "DevelopmentStatus": "Stable",
+    "Description": "Added option to select between multiple metadata application services",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-01-28T11:55:32.043-08:00",
+    "Files": [
+      {
+        "Id": "90c625c1-7306-4c83-9c2c-1ff524e64ee8",
+        "FileName": "BulkCSVImporterExporter_x64.exe",
+        "Url": "./0/90c625c1-7306-4c83-9c2c-1ff524e64ee8",
+        "Type": "Application",
+        "UploadDate": "2011-01-28T11:55:31.95-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "1",
+    "Name": "Bulk TermSet Importer-Exporter",
+    "DevelopmentStatus": "Stable",
+    "Description": "Added Export option.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2010-07-09T12:34:42.7-07:00",
+    "Files": [
+      {
+        "Id": "adc5335e-9df3-4ce5-a63b-df93869c7f75",
+        "FileName": "BulkCSVImporterExporter_x64.exe",
+        "Url": "./1/adc5335e-9df3-4ce5-a63b-df93869c7f75",
+        "Type": "Application",
+        "UploadDate": "2010-07-09T12:33:27.973-07:00"
+      }
+    ]
+  },
+  {
+    "Id": "2",
+    "Name": "Bulk Term Set Importer",
+    "DevelopmentStatus": "Stable",
+    "Description": "Initial Release",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2010-06-03T10:25:12.303-07:00",
+    "Files": [
+      {
+        "Id": "26bcd6a8-3b46-4b7a-8b4a-bfa0a3f9eb70",
+        "FileName": "BulkCSVImporter.exe",
+        "Url": "./2/26bcd6a8-3b46-4b7a-8b4a-bfa0a3f9eb70",
+        "Type": "Application",
+        "UploadDate": "2010-06-03T10:23:45.91-07:00"
+      }
+    ]
+  },
+  {
+    "Id": "3",
+    "Name": "TermSet Importer-Exporter 1.2",
+    "DevelopmentStatus": "Stable",
+    "Description": "fixed: http://termsetimporter.codeplex.com/workitem/30881\nfixed: http://termsetimporter.codeplex.com/workitem/31084",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2012-09-10T10:34:32.097-07:00",
+    "Files": [
+      {
+        "Id": "a1c90cf4-bb92-44c9-b638-765bfbd74faa",
+        "FileName": "BulkCSVImporterExporter_x64.exe",
+        "Url": "./3/a1c90cf4-bb92-44c9-b638-765bfbd74faa",
+        "Type": "Application",
+        "UploadDate": "2012-09-10T10:34:31.863-07:00"
+      },
+      {
+        "Id": "2fcbed53-a1d1-46f6-9436-079d767c4b2d",
+        "FileName": "TermSetImporterExporter.pdf",
+        "Url": "./3/2fcbed53-a1d1-46f6-9436-079d767c4b2d",
+        "Type": "Documentation",
+        "UploadDate": "2012-03-23T12:38:44.43-07:00"
+      }
+    ]
+  }
+]

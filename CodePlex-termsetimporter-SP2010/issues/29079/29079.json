@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-05-20T15:37:50.107-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hi,\nI have more than one Managed meta data services running (with different names of course). When trying out this tool and using the EXPORT function, it doesn't work. In each MMS I use different groups with different group names. When I enter the name of the group I get the message ' couldn t find group: <groupname>'. When I try it on a server with only one MMS configured, it does work.. So I figure it has got something to do with the fact that I have more than one MMS configured....\n-Peter vd Berg",
+    "LastUpdatedDate": "2013-05-16T03:11:24.213-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "termsetimporter",
+    "ReportedDate": "2010-10-05T06:15:47.197-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Not working with more MMS configured",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 29079
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "i added support for it, thanks!",
+      "PostedDate": "2011-05-20T15:37:03.037-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-05-20T15:37:50.107-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-14T13:19:30.49-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T03:11:24.213-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2012-03-23T12:39:28.66-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When exporting any instance of the a '&' character is replaced with 'ï¼†'",
+    "LastUpdatedDate": "2013-05-16T03:11:23.07-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "termsetimporter",
+    "ReportedDate": "2011-10-24T07:56:22.313-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "The & character is exported as ï¼†",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 31636
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Yes it does, i am not sure why, but if you import file back, it will be imported as a '&' character. \r\n\r\n\n\n** Closed by dotsad 3/23/2012 12:21 PM",
+      "PostedDate": "2012-03-23T12:22:14.96-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "yes it does, but when imported back, it displays '&' correctly.",
+      "PostedDate": "2012-03-23T12:22:15.687-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-03-23T12:39:28.66-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-14T13:19:29.427-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T03:11:23.07-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

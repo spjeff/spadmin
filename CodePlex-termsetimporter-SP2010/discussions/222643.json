@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "477136",
+    "ThreadId": "222643",
+    "Html": "Hello, are there any plans to include support for exporting and importing synonoumous for term sets?\r\n\r\nThanks!\r\n\r\nGabo",
+    "PostedDate": "2010-08-05T14:59:54.23-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "557036",
+    "ThreadId": "222643",
+    "Html": "\r\n<p>You cannot represent synonyms or translations of terms by using a managed metadata import file. To create synonyms or translations you must either use the Term Store Management Tool (web access)&nbsp;or write a custom program to import and add the synonyms\r\n or translations.</p>\r\n<p><a href=\"http://technet.microsoft.com/en-us/library/ee424396.aspx#section2\">http://technet.microsoft.com/en-us/library/ee424396.aspx#section2</a></p>\r\n",
+    "PostedDate": "2011-01-28T11:26:21.883-08:00",
+    "UserRole": "Owner",
+    "MarkedAsAnswerDate": null
+  }
+]
