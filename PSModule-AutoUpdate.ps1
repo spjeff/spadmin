@@ -24,7 +24,7 @@ param (
 
 # Installer
 if ($install) {
-    schtasks /s $_ /create /tn "PSModule-AutoUpdate" /ru $user /rp $pass
+    schtasks /s $_ /create /tn "PSModule-AutoUpdate" /ru $user /rp $pass /sc monthly /mo 1
 }
 
 # Available Modules
