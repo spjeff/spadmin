@@ -1,7 +1,6 @@
-# Simulate keyboard input to bypass screen saver lock
-
-$shell = New-Object -ComObject wscript.shell;
-while (1) {
-    Start-Sleep 60
-    $shell.SendKeys(".")
+$myshell = New-Object -ComObject wscript.shell;
+$minutes = 120
+for ($i = 0; $i -lt $minutes; $i++) {
+  Start-Sleep -Seconds 60
+  $myshell.sendkeys(&quot;.&quot;)
 }
