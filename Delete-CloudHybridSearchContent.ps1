@@ -6,6 +6,10 @@
     SharePoint Online portal URL, for example 'https://contoso.sharepoint.com'.
 .PARAMETER Credential
     Logon credential for tenant admin. Will prompt for credential if not specified.
+	
+# from https://docs.microsoft.com/en-us/archive/blogs/spses/cloud-search-service-application-removing-items-from-the-office-365-search-index
+# from https://docs.microsoft.com/en-us/previous-versions/office/sharepoint-csom/mt684373(v%3Doffice.15)
+
 #>
 param(
     [Parameter(Mandatory=$true, HelpMessage="SharePoint Online portal URL, for example 'https://contoso.sharepoint.com'.")]
