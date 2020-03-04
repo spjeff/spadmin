@@ -3,6 +3,7 @@
 .NOTES  
 	File Name:  Practical-PowerShell-LOG.ps1
 	Author   :  Jeff Jones  - @spjeff
+	Author   :  Todd Klindt  - @ToddKlindt
 	Version  :  1.0
 	Modified :  2020-03-04
 
@@ -19,13 +20,14 @@ function Main() {
 
 # Open Log
 $prefix = $MyInvocation.MyCommand.Name
-$stamp = (Get-Date).tostring().replace("/", "-").replace(":", "-")
+$stamp = Get-Date -UFormat "%Y-%m-%d-%H-%M-%S"
 Start-Transcript "$PSScriptRoot\log\$prefix-$stamp.log"
 $start = Get-Date
 
 Main
 
 # Close Log
-$elapsed = (Get-Date) – $start
-$elapsed
+$end = Get-Date
+$totaltime = $end - $start
+Write-Host "`nTime Elapsed: $($totaltime.tostring("hh\:mm\:ss"))"
 Stop-Transcript
