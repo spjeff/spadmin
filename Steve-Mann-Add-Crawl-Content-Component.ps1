@@ -1,7 +1,7 @@
 # from http://stevemannspath.blogspot.com/2013/05/sharepoint-2013-search-add-query.html
 
 # Get Search Service Instance and Start on New WFE Server
-$ssi = Get-SPEnterpriseSearchServiceInstance -Identity 
+$ssi = Get-SPEnterpriseSearchServiceInstance -Identity $env:computername
 Start-SPEnterpriseSearchServiceInstance -Identity $ssi
 Start-SPEnterpriseSearchQueryAndSiteSettingsServiceInstance -Identity $env:computername
 
