@@ -1,4 +1,15 @@
 # https://4sysops.com/archives/disable-ssl-and-tls-1-01-1-on-iis-with-powershell/
+<#
+
+.\TLS.ps1 -Proto TLS10 -Target Client -Action Enable
+.\TLS.ps1 -Proto TLS11 -Target Client -Action Enable
+.\TLS.ps1 -Proto TLS12 -Target Client -Action Enable
+.\TLS.ps1 -Proto SSL30 -Target Client -Action Enable
+.\TLS.ps1 -Proto TLS10 -Target Server -Action Enable
+.\TLS.ps1 -Proto TLS11 -Target Server -Action Enable
+.\TLS.ps1 -Proto TLS12 -Target Server -Action Enable
+.\TLS.ps1 -Proto SSL30 -Target Server -Action Enable
+#>
 [CmdletBinding()]
 Param(
    [Parameter(Mandatory = $False)]
