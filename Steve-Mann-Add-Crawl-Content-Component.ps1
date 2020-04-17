@@ -26,6 +26,8 @@ $clone = New-SPEnterpriseSearchTopology -SearchApplication $ssa -Clone –Search
 New-SPEnterpriseSearchContentProcessingComponent -SearchTopology $clone -SearchServiceInstance $ssi
 New-SPEnterpriseSearchCrawlComponent -SearchTopology $clone -SearchServiceInstance $ssi
 #New-SPEnterpriseSearchIndexComponent -SearchTopology $clone -SearchServiceInstance $env:computername -IndexPartition 1
+New-SPEnterpriseSearchAnalyticsProcessingComponent -SearchTopology $clone -SearchServiceInstance $ssi
+
 
 # Activate  the Cloned Search Topology
 Set-SPEnterpriseSearchTopology -Identity $clone
