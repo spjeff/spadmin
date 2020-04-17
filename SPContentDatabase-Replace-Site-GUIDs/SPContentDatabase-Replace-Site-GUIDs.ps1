@@ -79,6 +79,7 @@ Function Main {
 "@
 
     $tsqlEventCache = @"
+    DROP TABLE [EventCache]
     CREATE TABLE [dbo].[EventCache](
         [EventTime] [datetime] NOT NULL,
         [Id] [bigint] IDENTITY(1,1) NOT NULL,
