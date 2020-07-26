@@ -6,23 +6,17 @@
 Install-Module "Microsoft.PowerApps.Administration.PowerShell" -AllowClobber
 Import-Module "Microsoft.PowerApps.Administration.PowerShell"
 
-# Install Manual (NUPKG extract ZIP)
-# from https://docs.microsoft.com/en-us/powershell/scripting/gallery/how-to/working-with-packages/manual-download?view=powershell-7
-# Import-Module "C:\Program Files\WindowsPowerShell\Modules\Microsoft.PowerApps.Powershell\1.0.13\Microsoft.PowerApps.PowerShell.psm1"
-# Unblock-File "C:\Program Files\WindowsPowerShell\Modules\Microsoft.PowerApps.Powershell\1.0.13\Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-# [reflection.assembly]::loadfile("C:\Program Files\WindowsPowerShell\Modules\Microsoft.PowerApps.Powershell\1.0.13\Microsoft.IdentityModel.Clients.ActiveDirectory.dll")
-# Get-Command *powerapp*
 
-# Connect
 # from https://docs.microsoft.com/en-us/power-platform/admin/powerapps-powershell
-Add-PowerAppsAccount -Endpoint "usgov"
+# Connect
+Add-PowerAppsAccount
 Get-PowerApp
 
 # Config (all GUID)
-$name   = "d0877074-9a19-4a05-8691-c9b7bb783e79"
+$name   = "7ff8f6e3-41f3-4474-a3f9-b9378c78eb1d"
 $owner  = $global:currentSession.userId
-$owner = "d9bcbbf0-a86f-42e0-9c6c-05a2ca387b70"
-$env    = "Default-7e6c5822-c9ff-4a02-99dd-6d286ea8af74"
+$owner = "67f75924-9d71-4210-9c04-3c2eb9328286"
+$env    = "Default-"
 
 # Update Owner
 Write-Host "Update Owner"
