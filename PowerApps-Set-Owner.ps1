@@ -13,10 +13,10 @@ Add-PowerAppsAccount
 Get-PowerApp
 
 # Config (all GUID)
-$name   = "7ff8f6e3-41f3-4474-a3f9-b9378c78eb1d"
+$name   = "13ee1859-f35f-4c81-9a9d-4ae19162fca2"
 $owner  = $global:currentSession.userId
-$owner = "67f75924-9d71-4210-9c04-3c2eb9328286"
-$env    = "Default-"
+$owner = "4733cbdb-c00e-46c4-8d99-a2490fde10d9"
+$env    = "Default-bfdcda27-6e7a-4490-bb94-5c16225655bc"
 
 # Update Owner
 Write-Host "Update Owner"
