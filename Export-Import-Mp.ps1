@@ -1,4 +1,4 @@
-#-----------------------------------------------------------------------------  
+﻿#-----------------------------------------------------------------------------  
 # Name:             export-import-mp.ps1   
 # Description:      This script has three switch to:
 #					- export a list of managed properties (optionally filtered) 
@@ -26,7 +26,7 @@ if ((gsnp MIcrosoft.SharePoint.Powershell -ea SilentlyContinue) -eq $null){
     asnp MIcrosoft.SharePoint.Powershell -ea Stop
 }
 
-$logfile = ".\CHA-TEST.csv"
+$logfile = ".\export-managed-properties.csv"
 $importlog = ".\import-managed-properties.log"
 $importlogerr = ".\import-managed-properties-errors.log"
 
@@ -117,36 +117,29 @@ if ($import){
 
                         foreach ($term in $cps.split("|")){
 
-							Write-Host "Processing Crawled Property $($term) on Managed Property $($mp.Name)" -ForegroundColor Cyan
+                            Write-Host "Processing Crawled Property $($term) on Managed Property $($mp.Name)" -ForegroundColor Cyan
 
-							if ((Get-SPEnterpriseSearchMetadataCrawledProperty -SearchApplication $ssa -Name $term -EA SilentlyContinue) -eq $null)
-							{
-								try{
-									New-SPEnterpriseSearchMetadataCrawledProperty -Name $term -PropSet "00130329-0000-0130-c000-000000131346" -Category SharePoint -IsNameEnum $false -VariantType 0 -SearchApplication $ssa
-								}
-								catch{
-									Write-Host "Crawled property $($term) does not exists and cannot create" -ForegroundColor Red
-									ac $importlog "$(Get-Date),$($mp.Name),[ERR],Crawled Property,$term"
-									ac $importlogerr "$(Get-Date),$($mp.Name),[ERR],Crawled Property,$term does not exists"
-								}
-							}
+                            if ((Get-SPEnterpriseSearchMetadataCrawledProperty -SearchApplication $ssa -Name $term -EA SilentlyContinue) -ne $null){
+                            
+                                $cp = Get-SPEnterpriseSearchMetadataCrawledProperty -SearchApplication $ssa -Name $term
 
-							$cp = Get-SPEnterpriseSearchMetadataCrawledProperty -SearchApplication $ssa -Name $term
+                                try {
+                                    New-SPEnterpriseSearchMetadataMapping -SearchApplication $ssa -ManagedProperty $newmp -CrawledProperty $cp[0] -EA Stop
+                                    ac $importlog "$(Get-Date),$($mp.Name),[INF],Metadata Mapping,$term"
 
-							try {
-								New-SPEnterpriseSearchMetadataMapping -SearchApplication $ssa -ManagedProperty $newmp -CrawledProperty $cp[0] -EA Stop
-								ac $importlog "$(Get-Date),$($mp.Name),[INF],Metadata Mapping,$term"
-
-								if($cp -is [system.array]){
-									ac $importlog "$(Get-Date),$($mp.Name),[WRN],Metadata Mapping,$term,More than one crawled property selected only the first has been used" 
-								}
-							} catch {
-								Write-Host "Something went wrong :) $($Error[0].Exception.Message)" -ForegroundColor Red
-								ac $importlog "$(Get-Date),$($mp.Name),[ERR],Metadata Mapping,$term"
-								ac $importlogerr "$(Get-Date),$($mp.Name),[ERR],Metadata Mapping,$($Error[0].Exception.Message)"
-							}
-						
-
+                                    if($cp -is [system.array]){
+                                        ac $importlog "$(Get-Date),$($mp.Name),[WRN],Metadata Mapping,$term,More than one crawled property selected only the first has been used" 
+                                    }
+                                } catch {
+                                    Write-Host "Something went wrong :) $($Error[0].Exception.Message)" -ForegroundColor Red
+                                    ac $importlog "$(Get-Date),$($mp.Name),[ERR],Metadata Mapping,$term"
+                                    ac $importlogerr "$(Get-Date),$($mp.Name),[ERR],Metadata Mapping,$($Error[0].Exception.Message)"
+                                }
+                            } else {
+                                Write-Host "Crawled property $($term) does not exists" -ForegroundColor Red
+                                ac $importlog "$(Get-Date),$($mp.Name),[ERR],Crawled Property,$term"
+                                ac $importlogerr "$(Get-Date),$($mp.Name),[ERR],Crawled Property,$term does not exists"
+                            }
                         }
                     }
                 } catch {
@@ -156,15 +149,6 @@ if ($import){
                 }
             } else {
                 Write-Host "Managed property $($mp.Name) already exists" -ForegroundColor Red
-				
-				<#
-				Write-Host "DELETE" -Fore Yellow
-				$delmp = Get-SPEnterpriseSearchMetadataManagedProperty -SearchApplication $ssa -Identity $mp.Name
-				$delmp
-				$delmp | Remove-SPEnterpriseSearchMetadataManagedProperty -Confirm:$false
-				#>
-				
-				
                 ac $importlog "$(Get-Date),$($mp.Name),[WRN],Managed Property,Managed property already exists"
             }
         }
