@@ -1,4 +1,6 @@
 # https://4sysops.com/archives/disable-ssl-and-tls-1-01-1-on-iis-with-powershell/
+# https://thesharepointfarm.com/2016/04/enabling-tls-1-2-support-sharepoint-server-2016/
+
 <#
 
 .\TLS.ps1 -Proto TLS10 -Target Client -Action Enable
@@ -9,11 +11,13 @@
 .\TLS.ps1 -Proto TLS11 -Target Server -Action Enable
 .\TLS.ps1 -Proto TLS12 -Target Server -Action Enable
 .\TLS.ps1 -Proto SSL30 -Target Server -Action Enable
+.\TLS.ps1 -Proto SCH -Action Enable
 #>
+
 [CmdletBinding()]
 Param(
    [Parameter(Mandatory = $False)]
-   [ValidateSet("SSL30", "TLS10", "TLS11", "TLS12")]
+   [ValidateSet("SSL30", "TLS10", "TLS11", "TLS12", "SCH")]
    [string]$Proto,
    [ValidateSet("Client", "Server")]
    [string]$Target,
@@ -21,6 +25,7 @@ Param(
    [ValidateSet("Enable", "Disable")]
    $Action)
 
+# Path REGKEY
 Function CheckKey {
    param(
       [string]$Proto
@@ -28,17 +33,20 @@ Function CheckKey {
    $RegKey = $null
 
    switch ($Proto) {
+      SCH   { $RegKey = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" }
       SSL30 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0" }
       TLS10 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0" }
       TLS11 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1" }
       TLS12 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2" }
       default {
-         "Not supported protocol. Possible values: SSL30, TLS10, TLS11, TLS12"
+         "Not supported protocol. Possible values: SSL30, TLS10, TLS11, TLS12, SCH"
          exit
       }
    }
    return $Regkey
 }
+
+# Create REGKEY folders
 if ($Proto) {
    $RegKey = CheckKey -Proto $Proto
 }
@@ -61,7 +69,11 @@ else {
       New-Item $TargetKey -Force   
    }
 }
+if ($Proto -eq "SCH") {
+   $TargetKey = $RegKey
+}
 
+# Update REGKEY
 Function SetProto {
    param(
 
@@ -116,20 +128,33 @@ Function SetProto {
    }
 }
 
-if ($TargetKey -and $Action) {
-   SetProto -TargetKey $TargetKey -Action $Action
-   Write-Host "The operation completed successfully, reboot is required" -ForegroundColor Green
-} else {
-   # Keys
-   $keys = @("HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0",
-   "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0",
-   "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1",
-   "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2")
+# Main
+function Main() {
+   if ($TargetKey -and $Action) {
+      SetProto -TargetKey $TargetKey -Action $Action
+      Write-Host "The operation completed successfully, reboot is required" -ForegroundColor "Green"
+   } else {
+      # Keys
+      $keys = @("HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0",
+      "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0",
+      "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1",
+      "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2")
 
-   # Read Only Display
-   foreach ($key in $keys) {
-      $key
-      Get-ItemProperty -Path $key -Name "DisabledByDefault"
-      Get-ItemProperty -Path $key -Name "Enabled"
+      # Read Only Display
+      foreach ($key in $keys) {
+         $key
+         Get-ItemProperty -Path $key -Name "DisabledByDefault"
+         Get-ItemProperty -Path $key -Name "Enabled"
+      }
+
+      # Keys
+      $keys = @("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319")
+
+      # Read Only Display
+      foreach ($key in $keys) {
+         $key
+         Get-ItemProperty -Path $key -Name "SchUseStrongCrypto"
+      }
    }
 }
+Main
