@@ -33,7 +33,7 @@ Function CheckKey {
    $RegKey = $null
 
    switch ($Proto) {
-      SCH   { $RegKey = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" }
+      SCH   { $RegKey = "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" }
       SSL30 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0" }
       TLS10 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0" }
       TLS11 { $RegKey = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1" }
@@ -51,6 +51,7 @@ if ($Proto) {
    $RegKey = CheckKey -Proto $Proto
 }
 [string[]]$TargetKey = $null
+if ($RegKey) {
 if (!($Target)) {
    Write-Host "Setting up both Client and Server protocols"
    $TargetKey = $(Join-Path $RegKey "Client").ToString()
@@ -68,6 +69,7 @@ else {
    if (!(Test-path -Path $(Join-Path $RegKey $Target))) {
       New-Item $TargetKey -Force   
    }
+}
 }
 if ($Proto -eq "SCH") {
    $TargetKey = $RegKey
@@ -143,17 +145,17 @@ function Main() {
       # Read Only Display
       foreach ($key in $keys) {
          $key
-         Get-ItemProperty -Path $key -Name "DisabledByDefault"
-         Get-ItemProperty -Path $key -Name "Enabled"
+         Get-ItemProperty -Path $key -Name "DisabledByDefault" -ErrorAction SilentlyContinue
+         Get-ItemProperty -Path $key -Name "Enabled" -ErrorAction SilentlyContinue
       }
 
       # Keys
-      $keys = @("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319")
+      $keys = @("HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319")
 
       # Read Only Display
       foreach ($key in $keys) {
          $key
-         Get-ItemProperty -Path $key -Name "SchUseStrongCrypto"
+         Get-ItemProperty -Path $key -Name "SchUseStrongCrypto" -ErrorAction SilentlyContinue
       }
    }
 }
