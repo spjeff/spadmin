@@ -1,0 +1,1 @@
+get-spserver |? {$_.Role -ne "Invalid"} |% {$a=$_.address; $txt=gc "\\$a\c`$\windows\system32\drivers\etc\hosts";$a | Out-File -Append out.txt;"---"| out-file -Append out.txt; $txt | out-file -Append out.txt}
