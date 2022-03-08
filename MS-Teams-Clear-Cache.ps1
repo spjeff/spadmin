@@ -12,6 +12,10 @@
 #>
 
 function Main() {
+	# GUI 
+	Add-Type -AssemblyName PresentationFramework
+	Add-Type -AssemblyName System.Windows.Forms
+	
 	# Close MS Teams
 	Get-Process teams | Stop-Process -Confirm:$false -Force
 	
