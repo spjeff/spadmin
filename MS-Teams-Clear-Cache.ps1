@@ -8,7 +8,7 @@
 	File Name:  MS-Teams-Clear-Cache.ps1
 	Author   :  Jeff Jones
 	Version  :  1.2
-	Modified :  2021-03-04
+	Modified :  2022-04-08
 #>
 
 function Main() {
@@ -51,6 +51,30 @@ function Main() {
 	Start-Process $proc -ArgumentList $arg	
 }
 
+# DOWNLOADN AND INSTALL TEAMS
+
+function downalodandInstall()
+{
+    $downloadpath ="https://go.microsoft.com/fwlink/p/?LinkID=2187217&clcid=0x4009&culture=en-in&country=IN&Lmsrc=groupChatMarketingPageWeb&Cmpid=directDownloadv2Win64"
+    Invoke-WebRequest -Uri $downloadpath -OutFile $env:TEMP\MSTeamsSetup_c_l_.exe
+    Invoke-Expression $env:TEMP\MSTeamsSetup_c_l_.exe
+}
+
+# UNISTALL TEAMS
+
+function unInstallTeams($path) {
+    $clientInstaller = "$($path)\Update.exe"
+    try {
+        $process = Start-Process -FilePath "$clientInstaller" -ArgumentList "–uninstall /s" -PassThru -Wait -ErrorAction STOP
+        if ($process.ExitCode -ne 0)
+        {
+            Write-Error "UnInstallation failed with exit code $($process.ExitCode)."
+        }
+    }
+    catch {
+        Write-Error $_.Exception.Message
+    }
+}
 # Open Log
 $prefix = $MyInvocation.MyCommand.Name
 $host.UI.RawUI.WindowTitle = $prefix
@@ -58,7 +82,16 @@ $stamp = Get-Date -UFormat "%Y-%m-%d-%H-%M-%S"
 Start-Transcript "$PSScriptRoot\log\$prefix-$stamp.log"
 $start = Get-Date
 
+
 Main
+
+# UNCOMMENT BELOW LINE INSTALLATION
+
+# downalodandInstall
+
+# UNCOMMENT BELOW LINE UN-INSTALLATION
+$localAppData="$($env:LOCALAPPDATA)\Microsoft\Teams"
+#unInstallTeams
 
 # Close Log
 $end = Get-Date
