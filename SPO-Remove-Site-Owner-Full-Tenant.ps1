@@ -5,11 +5,11 @@
     * Revoke Site Collection Admin (SCA) rights
     * Revoke Site Owners Group (where name ends with "*Owners")
 	
-	Comments and suggestions always welcome!  Please, use the issues panel at the project page.
+    Comments and suggestions always welcome!  Please, use the issues panel at the project page.
 
 .NOTES  
-	File Name:  SPO-Remove-Site-Owner-Full-Tenant.ps1
-	Author   :  Jeff Jones  - @spjeff
+    File Name:  SPO-Remove-Site-Owner-Full-Tenant.ps1
+    Author   :  Jeff Jones  - @spjeff
 .LINK
     https://github.com/spjeff/spadmin
     https://studio.youtube.com/video/FfKhGZvemCs/edit
