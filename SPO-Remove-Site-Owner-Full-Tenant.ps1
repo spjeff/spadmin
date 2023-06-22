@@ -11,7 +11,7 @@
 	File Name:  SPO-Remove-Site-Owner-Full-Tenant.ps1
 	Author   :  Jeff Jones  - @spjeff
 .LINK
-	https://github.com/spjeff/spadmin
+    https://github.com/spjeff/spadmin
     https://studio.youtube.com/video/FfKhGZvemCs/edit
 #>
 
